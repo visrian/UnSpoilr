@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+  "name": "Unspoiler",
+  "version": "1.0",
+
+  "description": "Removes posts of the facebook newsfeed containing the given keyword",
+  "page_action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": "popup/icon128.png",
+    "default_title": "Unspoiler"
+  },
+  "background": {
+        "scripts": [ "background.js" ],
+        "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*.facebook.com/*", "https://*.facebook.com/*"],
+      "js": [
+              "content_scripts/jquery.min.js",
+              "content_scripts/underscore.min.js",
+              "content_scripts/postremover.js"
+            ]
+    }
+  ],
+  "permissions": [
+    "https://www.facebook.com/",
+    "http://www.facebook.com/",
+    "storage",
+    "tabs"
+  ]
+}
